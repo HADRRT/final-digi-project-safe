@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kids Expenses System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Kids Expenses System</h1>
+        
+        <!-- Login Form -->
+        <div id="loginPage">
+            <h2>Login</h2>
+            <input type="text" id="username" placeholder="Username">
+            <input type="password" id="password" placeholder="Password">
+            <button onclick="login()">Login</button>
+            <p id="loginError" style="color:red"></p>
+        </div>
+
+        <!-- Child Page -->
+        <div id="childPage" style="display:none">
+            <h2>Welcome Child! 👶</h2>
+            <h3>Add Expense</h3>
+            <input type="text" id="reason" placeholder="Reason">
+            <input type="number" id="amount" placeholder="Amount">
+            <button onclick="addExpense()">Add Expense</button>
+            <div id="childMessage"></div>
+        </div>
+
+        <!-- Supervisor Page -->
+        <div id="supervisorPage" style="display:none">
+            <h2>Welcome Supervisor! 👨‍💼</h2>
+            <h3>Pending Expenses</h3>
+            <div id="expensesList"></div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
