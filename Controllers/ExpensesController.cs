@@ -25,6 +25,17 @@ namespace ExpensesSystem.Controllers
             return Ok(expenses);
         }
 
+        [HttpGet("my")]
+        [Authorize(Roles = "Child")]
+        public IActionResult GetMyExpenses()
+        {
+            var name = User.Identity?.Name;
+            var expenses = _context.Expenses
+                .Where(e => e.ChildName == name)
+                .ToList();
+            return Ok(expenses);
+        }
+
         [HttpPost]
         [Authorize(Roles = "Child")]
         public IActionResult AddExpense(Expense expense)

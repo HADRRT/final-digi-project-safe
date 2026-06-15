@@ -2,39 +2,118 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kids Expenses System</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>Kids Expenses System</h1>
-        
-        <!-- Login Form -->
-        <div id="loginPage">
-            <h2>Login</h2>
-            <input type="text" id="username" placeholder="Username">
-            <input type="password" id="password" placeholder="Password">
-            <button onclick="login()">Login</button>
-            <p id="loginError" style="color:red"></p>
-        </div>
 
-        <!-- Child Page -->
-        <div id="childPage" style="display:none">
-            <h2>Welcome Child! 👶</h2>
-            <h3>Add Expense</h3>
-            <input type="text" id="reason" placeholder="Reason">
-            <input type="number" id="amount" placeholder="Amount">
-            <button onclick="addExpense()">Add Expense</button>
-            <div id="childMessage"></div>
-        </div>
-
-        <!-- Supervisor Page -->
-        <div id="supervisorPage" style="display:none">
-            <h2>Welcome Supervisor! 👨‍💼</h2>
-            <h3>Pending Expenses</h3>
-            <div id="expensesList"></div>
+    <!-- LOGIN PAGE -->
+    <div id="loginPage" class="page active">
+        <div class="login-container">
+            <div class="login-header">
+                <div class="logo">💰</div>
+                <h1>Kids Expenses</h1>
+                <p>Manage your expenses smartly</p>
+            </div>
+            <div class="login-form">
+                <div class="input-group">
+                    <label>Username</label>
+                    <input type="text" id="username" placeholder="Enter your name">
+                </div>
+                <div class="input-group">
+                    <label>Password</label>
+                    <input type="password" id="password" placeholder="Enter your password">
+                </div>
+                <button class="btn-primary" onclick="login()">Login</button>
+                <p id="loginError" class="error-msg"></p>
+            </div>
         </div>
     </div>
+
+    <!-- CHILD PAGE -->
+    <div id="childPage" class="page">
+        <nav class="navbar">
+            <div class="nav-brand">💰 Kids Expenses</div>
+            <div class="nav-user">
+                <span id="childUsername">👶 Child</span>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </nav>
+        <div class="dashboard">
+            <div class="welcome-card">
+                <h2>Welcome back! 👋</h2>
+                <p>Track your expenses and get approval</p>
+            </div>
+            <div class="content-grid">
+                <!-- Add Expense Form -->
+                <div class="card">
+                    <h3>➕ Add New Expense</h3>
+                    <div class="input-group">
+                        <label>Reason</label>
+                        <input type="text" id="reason" placeholder="e.g. School trip, Books...">
+                    </div>
+                    <div class="input-group">
+                        <label>Amount (EGP)</label>
+                        <input type="number" id="amount" placeholder="e.g. 100">
+                    </div>
+                    <button class="btn-primary" onclick="addExpense()">Submit Expense</button>
+                    <div id="childMessage"></div>
+                </div>
+                <!-- My Expenses -->
+                <div class="card">
+                    <h3>📋 My Expenses</h3>
+                    <div id="childExpensesList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUPERVISOR PAGE -->
+    <div id="supervisorPage" class="page">
+        <nav class="navbar">
+            <div class="nav-brand">💰 Kids Expenses</div>
+            <div class="nav-user">
+                <span id="supervisorUsername">👨‍💼 Supervisor</span>
+                <button class="btn-logout" onclick="logout()">Logout</button>
+            </div>
+        </nav>
+        <div class="dashboard">
+            <div class="welcome-card supervisor">
+                <h2>Supervisor Dashboard 👨‍💼</h2>
+                <p>Review and manage children's expenses</p>
+            </div>
+            <div class="stats-bar">
+                <div class="stat-card">
+                    <span id="totalCount">0</span>
+                    <label>Total</label>
+                </div>
+                <div class="stat-card pending">
+                    <span id="pendingCount">0</span>
+                    <label>Pending</label>
+                </div>
+                <div class="stat-card approved">
+                    <span id="approvedCount">0</span>
+                    <label>Approved</label>
+                </div>
+                <div class="stat-card rejected">
+                    <span id="rejectedCount">0</span>
+                    <label>Rejected</label>
+                </div>
+            </div>
+            <div class="card">
+                <div class="filter-bar">
+                    <button class="filter-btn active" onclick="filterExpenses('All')">All</button>
+                    <button class="filter-btn" onclick="filterExpenses('Pending')">Pending</button>
+                    <button class="filter-btn" onclick="filterExpenses('Approved')">Approved</button>
+                    <button class="filter-btn" onclick="filterExpenses('Rejected')">Rejected</button>
+                </div>
+                <div id="expensesList"></div>
+            </div>
+        </div>
+    </div>
+
     <script src="app.js"></script>
 </body>
 </html>
